@@ -1,0 +1,42 @@
+<html>
+    <head>
+    </head>
+    <body>
+        {% if rentids==0 %}
+        <h1> No fines found</h1>
+        {% else %}
+        <div class="table text-center mt-4 ml-4">
+            <table border="1px" cellpadding="20px" cellspacing="0px">
+                <tr>
+                         <th>Rent Id</th>
+                         <th>Student Id</th>
+                         <th>Section</th>
+                         <th>Book Id</th>
+                         <th>Title</th>
+                         <th>Date taken</th>
+                         <th>Due Date</th>
+                         <th>Fine</th>
+                         <th>payment</th>
+                    
+                </tr>
+                {% for i in rentids %}
+                <tr>
+                        <td>{{i[0]}}</td>
+                        <td>{{i[1]}}</td>
+                        <td>{{i[2]}}</td>
+                        <td>{{i[3]}}</td>
+                        <td>{{i[4]}}</td>
+                        <td>{{i[8]}}</td>
+                        <td>{{i[5]}}</td>
+                        <td>{{i[6]}}</td>
+                        <form method="POST" action="{{url_for('pay',rentid=i[0],studid=i[1],fine=i[6])}}">
+                        <td><input type="submit" value="pay now"/></td>
+                        </form>
+
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    {% endif %}
+    </body>
+</html>
